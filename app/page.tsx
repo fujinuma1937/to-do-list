@@ -2,7 +2,6 @@
 import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 type Todo = {
   id: number;
@@ -11,7 +10,6 @@ type Todo = {
 };
 
 export default function Home() {
-  const router = useRouter();
   const [todoList, settodoList] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -21,8 +19,8 @@ export default function Home() {
       .then((res) => {
         settodoList([...res.data]);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        alert("データの取得に失敗しました");
       });
   };
 
@@ -33,10 +31,9 @@ export default function Home() {
           title: inputValue,
           delete: false,
         })
-        .then((res) => {
+        .then(() => {
           getAllData();
         });
-      router.push("./");
     } else {
       alert("入力してください");
     }
@@ -46,7 +43,6 @@ export default function Home() {
     const payload = {
       id: value,
     };
-    console.log(`${value}`);
     await axios
       .delete(`http://localhost:3100/todoList/${value}`, { data: payload })
       .then(() => {
@@ -54,15 +50,10 @@ export default function Home() {
       });
   };
 
-  const addTodo = () => {
-    addData();
-  };
-  const deleteTodo = (id: number) => {
-    deleteData(id);
-  };
   useEffect(() => {
     getAllData();
   }, []);
+
   return (
     <main className="bg-gray">
       <h1 className="text-center text-xl">To Do List</h1>
@@ -77,7 +68,7 @@ export default function Home() {
                   </p>
                   <button
                     className="bg-red-900 text-white p-2"
-                    onClick={() => deleteTodo(todo.id)}
+                    onClick={() => deleteData(todo.id)}
                   >
                     削除する
                   </button>
@@ -98,7 +89,7 @@ export default function Home() {
           />
           <button
             className="bg-green-700 text-white p-2"
-            onClick={() => addTodo()}
+            onClick={() => addData()}
           >
             入力する
           </button>

@@ -1,11 +1,6 @@
 {
   "todoList": [
     {
-      "id": "276496285349",
-      "title": "jsonにあるデータ1",
-      "delete": false
-    },
-    {
       "id": "0568",
       "title": "ああああ",
       "delete": false
@@ -16,8 +11,13 @@
       "delete": false
     },
     {
-      "id": "f058",
-      "title": "ああああ1",
+      "id": "1757",
+      "title": "ああああ",
+      "delete": false
+    },
+    {
+      "id": "bb21",
+      "title": "テストデータ",
       "delete": false
     }
   ]
