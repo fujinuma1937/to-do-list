@@ -150,6 +150,14 @@ export default function Home() {
               placeholder="入力しやがれ"
               required
             />
+            <input
+              className="px-2 min-w-40 border-2 border-gray-300"
+              type="date"
+              value={inputValue}
+              onChange={(event) => setInputValue(event.target.value)}
+              placeholder="入力しやがれ"
+              required
+            />
             <button
               className="bg-indigo-700 text-white p-2 shadow-md"
               onClick={() => addData()}
