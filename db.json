@@ -1,24 +1,16 @@
 {
   "todoList": [
     {
-      "id": "0568",
-      "title": "ああああ",
-      "delete": false
-    },
-    {
-      "id": "2926",
-      "title": "ああああ",
-      "delete": false
-    },
-    {
       "id": "1757",
       "title": "ああああ",
-      "delete": false
+      "deadline": "2019-12-31",
+      "edit": false
     },
     {
-      "id": "bb21",
-      "title": "テストデータ",
-      "delete": false
+      "id": "b369",
+      "title": "ああああ",
+      "deadline": "2019-12-31",
+      "edit": false
     }
   ]
 }
