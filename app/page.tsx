@@ -99,16 +99,30 @@ export default function Home() {
               <li className="" key={todo.id}>
                 <div className="flex gap-x-2">
                   {todo.edit ? (
-                    <input type="text" value={todo.title} />
+                    <input
+                      className="min-w-96 bg-cyan-100 w-fit flex items-center px-2"
+                      type="text"
+                      value={todo.title}
+                      placeholder="入力しやがれ"
+                    />
                   ) : (
                     <p className="min-w-96 bg-white w-fit flex items-center px-2">
                       {todo.title}
                     </p>
                   )}
 
-                  <p className="bg-white w-fit flex items-center px-2">
-                    {todo.deadline}
-                  </p>
+                  {todo.edit ? (
+                    <input
+                      type="date"
+                      value={todo.deadline}
+                      className="bg-cyan-100  w-fit flex items-center px-2"
+                    />
+                  ) : (
+                    <p className="bg-white w-fit flex items-center px-2">
+                      {todo.deadline}
+                    </p>
+                  )}
+
                   {todo.edit ? (
                     <button
                       className="bg-stone-600 text-white p-2 shadow-md"
