@@ -120,7 +120,6 @@ export default function Home() {
 
   return (
     <main className="">
-      {editArray}
       <section className="bg-indigo-200 w-fit p-11 m-auto my-10">
         <ul className="flex flex-col gap-y-5 mb-10">
           {todoList.map((todo, index) => {
