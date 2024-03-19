@@ -13,11 +13,11 @@ type Todo = {
 export default function Home() {
   const [todoList, settodoList] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState("");
-  const apiURL = "http://localhost:3100/todoList";
+  const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
 
   const getAllData = async () => {
     await axios
-      .get(apiURL)
+      .get(API_URL)
       .then((res) => {
         settodoList([...res.data]);
       })
@@ -29,7 +29,7 @@ export default function Home() {
   const addData = async () => {
     if (inputValue) {
       await axios
-        .post(apiURL, {
+        .post(API_URL, {
           title: inputValue,
           delete: false,
         })
@@ -46,9 +46,9 @@ export default function Home() {
     const payload = {
       id: id,
     };
-    console.log(`${apiURL}/${id}`);
+    console.log(`${API_URL}/${id}`);
     await axios
-      .delete(`${apiURL}/${id}`, { data: payload })
+      .delete(`${API_URL}/${id}`, { data: payload })
       .then(() => {
         getAllData();
       })
@@ -59,7 +59,7 @@ export default function Home() {
 
   const editData = async (id: any) => {
     await axios
-      .put(`${apiURL}/${id}`, {
+      .put(`${API_URL}/${id}`, {
         edit: true,
       })
       .then(() => {
@@ -72,7 +72,7 @@ export default function Home() {
 
   const editDataEnd = async (id: any) => {
     await axios
-      .put(`${apiURL}/${id}`, {
+      .put(`${API_URL}/${id}`, {
         edit: false,
       })
       .then(() => {
