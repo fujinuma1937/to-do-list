@@ -3,20 +3,12 @@
     {
       "id": "1757",
       "title": "ああああ",
-      "deadline": "2019-12-31",
-      "edit": true
+      "deadline": "2019-12-31"
     },
     {
       "id": "b369",
       "title": "ああああ",
-      "deadline": "2019-12-31",
-      "edit": false
-    },
-    {
-      "id": "b16a",
-      "title": "あああああ",
-      "deadline": "2019-12-31",
-      "delete": false
+      "deadline": "2019-12-31"
     }
   ]
 }

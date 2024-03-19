@@ -12,13 +12,19 @@ type Todo = {
 
 export default function Home() {
   const [todoList, settodoList] = useState<Todo[]>([]);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState<string>("");
+  const [isEdit, setIsEdit] = useState<boolean[]>([]);
   const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "";
 
   const getAllData = async () => {
     await axios
       .get(API_URL)
       .then((res) => {
+        const newEdit = []
+        for (let i = 0; i < res.data.length; i++) {
+          newEdit[i] = false;
+        }
+        setIsEdit(newEdit);
         settodoList([...res.data]);
       })
       .catch(() => {
@@ -46,7 +52,6 @@ export default function Home() {
     const payload = {
       id: id,
     };
-    console.log(`${API_URL}/${id}`);
     await axios
       .delete(`${API_URL}/${id}`, { data: payload })
       .then(() => {
@@ -57,30 +62,12 @@ export default function Home() {
       });
   };
 
-  const editData = async (id: any) => {
-    await axios
-      .put(`${API_URL}/${id}`, {
-        edit: true,
-      })
-      .then(() => {
-        getAllData();
-      })
-      .catch(() => {
-        alert("編集に失敗しました");
-      });
+  const editStart = (index: number) => {
+    setIsEdit(isEdit.map((edit, number) => (number === index ? !edit : edit)));
   };
 
-  const editDataEnd = async (id: any) => {
-    await axios
-      .put(`${API_URL}/${id}`, {
-        edit: false,
-      })
-      .then(() => {
-        getAllData();
-      })
-      .catch(() => {
-        alert("編集に失敗しました");
-      });
+  const editEnd = (index: number) => {
+    setIsEdit(isEdit.map((edit, number) => (number === index ? !edit : edit)));
   };
 
   useEffect(() => {
@@ -88,21 +75,19 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="bg-zinc-100 h-screen">
-      <h1 className="text-white bg-indigo-700 text-center text-xl w-full font-bold py-2">
-        To Do List
-      </h1>
+    <main className="">
+      {isEdit}
       <section className="bg-indigo-200 w-fit p-11 m-auto my-10">
         <ul className="flex flex-col gap-y-5 mb-10">
-          {todoList.map((todo) => {
+          {todoList.map((todo, index) => {
             return (
               <li className="" key={todo.id}>
                 <div className="flex gap-x-2">
-                  {todo.edit ? (
+                  {isEdit[index] ? (
                     <input
                       className="min-w-96 bg-cyan-100 w-fit flex items-center px-2"
                       type="text"
-                      value={todo.title}
+                      defaultValue={todo.title}
                       placeholder="入力しやがれ"
                     />
                   ) : (
@@ -111,7 +96,7 @@ export default function Home() {
                     </p>
                   )}
 
-                  {todo.edit ? (
+                  {isEdit[index] ? (
                     <input
                       type="date"
                       value={todo.deadline}
@@ -123,22 +108,21 @@ export default function Home() {
                     </p>
                   )}
 
-                  {todo.edit ? (
+                  {isEdit[index] ? (
                     <button
                       className="bg-stone-600 text-white p-2 shadow-md"
-                      onClick={() => editDataEnd(todo.id)}
+                      onClick={() => editEnd(index)}
                     >
                       編集完了
                     </button>
                   ) : (
                     <button
                       className="bg-teal-600 text-white p-2 shadow-md"
-                      onClick={() => editData(todo.id)}
+                      onClick={() => editStart(index)}
                     >
                       編集する
                     </button>
                   )}
-
                   <button
                     className="bg-pink-600 text-white p-2 shadow-md"
                     onClick={() => deleteData(todo.id)}
@@ -152,7 +136,7 @@ export default function Home() {
         </ul>
 
         <div className="w-fit m-auto bg-white p-6">
-          <h2 className="text-center text-lg font-bold text-indigo-700">
+          <h2 className="text-center text-lg font-bold text-indigo-700 mb-3">
             新規登録
           </h2>
           <div className="flex gap-x-2 w-fit m-auto">
@@ -161,7 +145,7 @@ export default function Home() {
               type="text"
               value={inputValue}
               onChange={(event) => setInputValue(event.target.value)}
-              placeholder="入力しやがれ"
+              placeholder="入力してください"
               required
             />
             <input
@@ -169,7 +153,7 @@ export default function Home() {
               type="date"
               value={inputValue}
               onChange={(event) => setInputValue(event.target.value)}
-              placeholder="入力しやがれ"
+              placeholder="入力してください"
               required
             />
             <button
