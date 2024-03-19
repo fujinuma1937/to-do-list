@@ -12,8 +12,8 @@ type Todo = {
 
 export default function Home() {
   const [todoList, settodoList] = useState<Todo[]>([]);
-  const [inputValue, setInputValue] = useState<string>("");
-  const [inputDate, setInputDate] = useState<string>("");
+  const [inputValue, setInputValue] = useState("");
+  const [inputDate, setInputDate] = useState("");
   const [editArray, setEditArray] = useState<boolean[]>([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editingText, setEditingText] = useState("");
@@ -129,7 +129,7 @@ export default function Home() {
 
   useEffect(() => {
     getAllData();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <main
