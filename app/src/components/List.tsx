@@ -39,59 +39,63 @@ const List: React.FC<Props> = ({
       {todoList ? (
         todoList.map((todo, index) => {
           return (
-            <li className="" key={todo.id}>
-              <div className="flex gap-x-2">
-                {editArray[index] ? (
-                  <input
-                    className="min-w-96 bg-cyan-100 w-fit flex items-center px-2"
-                    type="text"
-                    defaultValue={todo.title}
-                    value={editingText}
-                    placeholder="入力してください"
-                    onChange={(event) => setEditingText(event.target.value)}
-                    required
-                  />
-                ) : (
-                  <p className="min-w-96 bg-white w-fit flex items-center px-2">
-                    {todo.title}
-                  </p>
-                )}
+            <li className="flex gap-x-2" key={todo.id}>
+              {editArray[index] ? (
+                <input
+                  className="min-w-96 bg-cyan-100 w-fit flex items-center px-2"
+                  type="text"
+                  defaultValue={todo.title}
+                  value={editingText}
+                  placeholder="入力してください"
+                  onChange={(event) => setEditingText(event.target.value)}
+                  required
+                />
+              ) : (
+                <p className="min-w-96 bg-white w-fit flex items-center px-2">
+                  {todo.title}
+                </p>
+              )}
 
-                {editArray[index] ? (
-                  <input
-                    type="date"
-                    defaultValue={todo.deadline}
-                    value={editingDate}
-                    className="bg-cyan-100 min-w-40  w-fit flex items-center px-2"
-                    onChange={(event) => setEditingDate(event.target.value)}
-                  />
-                ) : (
-                  <p className="bg-white min-w-40 w-fit flex items-center px-2">
-                    {todo.deadline}
-                  </p>
-                )}
+              {editArray[index] ? (
+                <input
+                  type="date"
+                  defaultValue={todo.deadline}
+                  value={editingDate}
+                  className="bg-cyan-100 min-w-40  w-fit flex items-center px-2"
+                  onChange={(event) => setEditingDate(event.target.value)}
+                />
+              ) : (
+                <p className="bg-white min-w-40 w-fit flex items-center px-2">
+                  {todo.deadline}
+                </p>
+              )}
 
-                {editArray[index] ? (
-                  <button
-                    className="bg-stone-600 text-white p-2 shadow-md"
-                    onClick={() => editEnd(index, todo.id)}
-                  >
-                    編集完了
-                  </button>
-                ) : (
-                  <Button
-                    type="edit"
-                    innerText="編集する"
-                    action={editStart(index)}
-                  />
-                )}
+              {editArray[index] ? (
                 <button
-                  className="bg-pink-600 text-white p-2 shadow-md"
-                  onClick={() => deleteData(todo.id)}
+                  className="bg-stone-600 text-white p-2 shadow-md"
+                  onClick={() => editEnd(index, todo.id)}
                 >
-                  削除する
+                  編集完了
                 </button>
-              </div>
+              ) : (
+                // <Button
+                //   type="edit"
+                //   innerText="編集する"
+                //   action={editStart(index)}
+                // />
+                <button
+                  className="bg-cyan-600 text-white p-2 shadow-md"
+                  onClick={() => editStart(index)}
+                >
+                  編集する
+                </button>
+              )}
+              <button
+                className="bg-pink-600 text-white p-2 shadow-md"
+                onClick={() => deleteData(todo.id)}
+              >
+                削除する
+              </button>
             </li>
           );
         })

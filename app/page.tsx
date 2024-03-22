@@ -140,8 +140,8 @@ export default function Home() {
     <main
       className={
         isEditing
-          ? "bg-stone-500 py-16 h-full grid items-center"
-          : "py-16 h-full" + " " + " grid items-center"
+          ? "bg-stone-500  h-full grid items-center"
+          : " h-full" + " " + " grid items-center"
       }
     >
       <section className="relative bg-pink-200 w-fit p-11 m-auto">
@@ -153,6 +153,7 @@ export default function Home() {
         <Image
           className="absolute bottom-[-40px] right-[-40px] w-24"
           src={goatImage}
+          alt="ヤギ"
         />
         <Register
           inputValue={inputValue}
