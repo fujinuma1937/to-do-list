@@ -53,7 +53,7 @@ export default function Home() {
   const addData = async () => {
     if (!isEditing) {
       if (inputValue && inputDate) {
-        await axios
+        axios
           .post(API_URL, {
             id: generateID(12),
             title: inputValue,
@@ -82,7 +82,7 @@ export default function Home() {
       const payload = {
         id: id,
       };
-      await axios
+      axios
         .delete(`${API_URL}/${id}`, { data: payload })
         .then(() => {
           getAllData();
@@ -101,7 +101,7 @@ export default function Home() {
       title: editingText,
       deadline: editingDate,
     };
-    await axios
+    axios
       .put(`${API_URL}/${id}`, payload)
       .then(() => {
         getAllData();
@@ -160,9 +160,7 @@ export default function Home() {
           setInputValue={setInputValue}
           inputDate={inputDate}
           setInputDate={setInputDate}
-          addData={() => {
-            addData();
-          }}
+          addData={addData}
         />
         <List
           todoList={todoList}
