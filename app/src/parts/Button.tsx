@@ -12,11 +12,14 @@ const Button: React.FC<Props> = ({ type, innerText, action }) => {
     case "delete":
       style = "bg-pink-600";
   }
+  return (
+    <button
+      className={style + "text-white p-2 shadow-md"}
+      onClick={() => action}
+    >
+      {innerText}
+    </button>
+  );
 };
-return (
-  <button className={" text-white p-2 shadow-md"} onClick={() => action}>
-    {innerText}
-  </button>
-);
 
 export default Button;
