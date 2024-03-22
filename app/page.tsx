@@ -16,7 +16,7 @@ type Todo = {
 };
 
 export default function Home() {
-  const [todoList, settodoList] = useState<Todo[]>([]);
+  const [todoList, setTodoList] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [inputDate, setInputDate] = useState("");
   const [editArray, setEditArray] = useState<boolean[]>([]);
@@ -43,7 +43,7 @@ export default function Home() {
           newEdit[i] = false;
         }
         setEditArray(newEdit);
-        settodoList([...res.data]);
+        setTodoList([...res.data]);
       })
       .catch(() => {
         alert("データの取得に失敗しました");
