@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Register from "./src/components/Register";
 import List from "./src/components/List";
 import catImage from "../public/cat-image.png";
+import goatImage from "../public/goat-image.png";
 
 type Todo = {
   id: string;
@@ -145,9 +146,13 @@ export default function Home() {
     >
       <section className="relative bg-pink-200 w-fit p-11 m-auto">
         <Image
-          className="absolute top--10 left--10 w-24"
+          className="absolute top-[-40px] left-[-40px] w-24"
           src={catImage}
           alt="猫ミーム"
+        />
+        <Image
+          className="absolute bottom-[-40px] right-[-40px] w-24"
+          src={goatImage}
         />
         <Register
           inputValue={inputValue}
