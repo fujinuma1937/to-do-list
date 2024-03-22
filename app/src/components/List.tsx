@@ -1,3 +1,5 @@
+import Button from "../parts/Button";
+
 type Todo = {
   id: string;
   title: string;
@@ -77,12 +79,11 @@ const List: React.FC<Props> = ({
                     編集完了
                   </button>
                 ) : (
-                  <button
-                    className="bg-cyan-600 text-white p-2 shadow-md"
-                    onClick={() => editStart(index)}
-                  >
-                    編集する
-                  </button>
+                  <Button
+                    type="edit"
+                    innerText="編集する"
+                    action={editStart(index)}
+                  />
                 )}
                 <button
                   className="bg-pink-600 text-white p-2 shadow-md"
