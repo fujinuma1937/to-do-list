@@ -1,21 +1,23 @@
 type Props = {
   type: string;
   innerText: string;
-  action: Function;
+  action: React.MouseEventHandler<HTMLButtonElement>;
+};
+type colorType = {
+  [K in string]: string;
+};
+const color: colorType = {
+  input: "bg-teal-700",
+  editStart: "bg-cyan-600",
+  editEnd: "bg-stone-600 ",
+  delete: "bg-pink-600",
 };
 
 const Button: React.FC<Props> = ({ type, innerText, action }) => {
-  let style = "";
-  switch (type) {
-    case "edit":
-      style = "bg-cyan-600";
-    case "delete":
-      style = "bg-pink-600";
-  }
   return (
     <button
-      className={style + "text-white p-2 shadow-md"}
-      onClick={() => action}
+      className={color[type] + " " + "text-white p-2 shadow-md"}
+      onClick={action}
     >
       {innerText}
     </button>

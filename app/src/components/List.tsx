@@ -31,7 +31,7 @@ const List: React.FC<Props> = ({
   deleteData,
 }) => {
   return (
-    <ul className="flex flex-col gap-y-4 mt-10">
+    <ul className="flex flex-col gap-y-4">
       <li className="flex gap-x-2 ">
         <p className="min-w-96 text-pink-700 text-lg">やること</p>
         <p className="min-w-40 text-pink-700 text-lg">締め切り</p>
@@ -71,31 +71,23 @@ const List: React.FC<Props> = ({
               )}
 
               {editArray[index] ? (
-                <button
-                  className="bg-stone-600 text-white p-2 shadow-md"
-                  onClick={() => editEnd(index, todo.id)}
-                >
-                  編集完了
-                </button>
+                <Button
+                  type="editEnd"
+                  innerText="編集完了"
+                  action={() => editEnd(index, todo.id)}
+                />
               ) : (
-                // <Button
-                //   type="edit"
-                //   innerText="編集する"
-                //   action={editStart(index)}
-                // />
-                <button
-                  className="bg-cyan-600 text-white p-2 shadow-md"
-                  onClick={() => editStart(index)}
-                >
-                  編集する
-                </button>
+                <Button
+                  type="editStart"
+                  innerText="編集する"
+                  action={() => editStart(index)}
+                />
               )}
-              <button
-                className="bg-pink-600 text-white p-2 shadow-md"
-                onClick={() => deleteData(todo.id)}
-              >
-                削除する
-              </button>
+              <Button
+                type="delete"
+                innerText="削除する"
+                action={() => deleteData(todo.id)}
+              />
             </li>
           );
         })

@@ -144,14 +144,14 @@ export default function Home() {
           : " h-full" + " " + " grid items-center"
       }
     >
-      <section className="relative bg-pink-200 w-fit p-11 m-auto">
+      <section className="relative bg-pink-200 w-fit p-11 m-auto flex flex-col gap-y-10">
         <Image
-          className="absolute top-[-40px] left-[-40px] w-24"
+          className="absolute top-[-56px] left-[-56px] w-24"
           src={catImage}
           alt="猫ミーム"
         />
         <Image
-          className="absolute bottom-[-40px] right-[-40px] w-24"
+          className="absolute bottom-[-56px] right-[-56px] w-24"
           src={goatImage}
           alt="ヤギ"
         />

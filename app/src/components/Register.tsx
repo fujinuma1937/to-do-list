@@ -1,3 +1,5 @@
+import Button from "../parts/Button";
+
 type Props = {
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
@@ -40,12 +42,7 @@ const Register: React.FC<Props> = ({
             onChange={(event) => setInputDate(event.target.value)}
             required
           />
-          <button
-            className="bg-pink-700 text-white p-2 shadow-md"
-            onClick={() => addData()}
-          >
-            入力する
-          </button>
+          <Button type="input" innerText="入力する" action={() => addData()} />
         </div>
       </div>
     </div>
