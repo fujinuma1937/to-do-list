@@ -11,6 +11,7 @@ const color: colorType = {
   editStart: "bg-cyan-600",
   editEnd: "bg-stone-600 ",
   delete: "bg-pink-600",
+  clear: "bg-gray-700",
 };
 
 const Button: React.FC<Props> = ({ type, innerText, action }) => {

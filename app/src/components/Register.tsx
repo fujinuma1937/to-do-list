@@ -6,6 +6,7 @@ type Props = {
   inputDate: string;
   setInputDate: React.Dispatch<React.SetStateAction<string>>;
   addData: Function;
+  clearData: Function;
 };
 
 const Register: React.FC<Props> = ({
@@ -14,6 +15,7 @@ const Register: React.FC<Props> = ({
   inputDate,
   setInputDate,
   addData,
+  clearData,
 }) => {
   return (
     <div className="w-full m-auto bg-white p-6">
@@ -43,6 +45,11 @@ const Register: React.FC<Props> = ({
             required
           />
           <Button type="input" innerText="入力する" action={() => addData()} />
+          <Button
+            type="clear"
+            innerText="クリアする"
+            action={() => clearData()}
+          />
         </div>
       </div>
     </div>

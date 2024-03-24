@@ -132,6 +132,11 @@ export default function Home() {
     updateData(id);
   };
 
+  const clearData = () => {
+    setInputValue("");
+    setInputDate("");
+  };
+
   useEffect(() => {
     getAllData();
   }, []); // eslint-disable-line
@@ -161,6 +166,7 @@ export default function Home() {
           inputDate={inputDate}
           setInputDate={setInputDate}
           addData={addData}
+          clearData={clearData}
         />
         <List
           todoList={todoList}
