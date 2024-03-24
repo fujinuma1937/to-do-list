@@ -37,7 +37,7 @@ const Register: React.FC<Props> = ({
           />
           <input
             className="px-2 min-w-40 border-2 border-gray-300"
-            type="date"
+            type="datetime-local"
             value={inputDate}
             onChange={(event) => setInputDate(event.target.value)}
             required

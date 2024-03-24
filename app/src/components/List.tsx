@@ -66,7 +66,7 @@ const List: React.FC<Props> = ({
                 />
               ) : (
                 <p className="bg-white min-w-40 w-fit flex items-center px-2">
-                  {todo.deadline}
+                  {todo.deadline.replace('T',' ')}
                 </p>
               )}
 
